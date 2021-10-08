@@ -27,3 +27,13 @@ Quando uma classe implementa uma function type, é como se ela fosse uma classe 
 apenas um método com a assinatura da fuction type. Isso não é lindo?
 
 [Exemplos com type functions](src/main/kotlin/TypeFunctions.kt)
+
+### Higher Order Functions
+
+Essa nomenclatura representa indica que uma função receberá outra por parâmetro ou retornará uma outra função. O Kotlin
+tem algumas simplificações na sintaxe quando se está recebendo funções por parâmetro, por exemplo, ele não obriga o uso
+de parenteses para lambdas quando elas são o último parâmetro da função. Isso deixa o código mais fluído.
+
+É interessante também que funções recebidas por argumento podem aproveitar recursos como extension functions. É o caso
+do `also`.
+

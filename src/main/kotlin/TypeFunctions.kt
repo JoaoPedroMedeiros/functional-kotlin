@@ -1,3 +1,5 @@
+import java.math.BigDecimal
+
 fun main() {
     // Essa variável é uma referência para a função safe divide
     val f = ::safeDivide
@@ -23,7 +25,11 @@ fun main() {
     println("Função chamada por uma classe que implementa type function: ${c(5, 2)}" )
     println(f == ::safeDivide)
 
-
+    // Uma coisa interessante é que type functions podem ter o nome
+    // do parâmetro na assinatura. Isso deixa mais claro qual a regra de negócio
+    // quando estiver trabalhando com lambdas ou anonymous functions.
+    val calcularBonificacao: (salario: Double) -> Double = { it + 200 }
+    println(calcularBonificacao(2000.00))
 }
 
 fun safeDivide(numerator: Int, denominator: Int) =
