@@ -5,20 +5,22 @@
 fun main() {
     delay(3000) {
         val pureText = "joÃO Paixão"
-        describeSomeone(pureText.firstWord(), pureText.lastWord())
+        describeSomeone(pureText.whoWeAreTalkingAbout(), pureText.somethingAbout())
     }
 
     "joÃo Lindão".letDelayed(3000) {
         describeSomeone(
-            who = it.firstWord(),
-            somethingAboutThem = it.lastWord()
+            who = it.whoWeAreTalkingAbout(),
+            somethingAboutThem = it.somethingAbout(),
+            howMuch = HowMuch.MEIO
         )
     }
 
     "JOÃO Doidão".alsoDelayed(3000) {
         describeSomeone(
-            who = firstWord(),
-            somethingAboutThem = lastWord()
+            who = whoWeAreTalkingAbout(),
+            somethingAboutThem = somethingAbout(),
+            howMuch = HowMuch.MUITO
         )
     }
 }
@@ -54,10 +56,18 @@ fun <T, R> T.alsoDelayed(delay: Long, block: T.() -> R): R {
     return block()
 }
 
-fun String.firstWord() = substringBefore(" ")
+fun String.whoWeAreTalkingAbout() = substringBefore(" ")
 
-fun String.lastWord() = substringAfterLast(" ")
+fun String.somethingAbout() = substringAfterLast(" ")
 
 fun String.camelCase() = "${substring(0, 1).uppercase()}${substring(1).lowercase()}"
 
-fun describeSomeone(who: String, somethingAboutThem: String) = println("O ${who.camelCase()} é ${somethingAboutThem.lowercase()}")
+fun <T> T?.letOrEmpty(block: T.() -> String): String = if (this != null) block() else ""
+
+fun describeSomeone(who: String, somethingAboutThem: String, howMuch: HowMuch? = null) =
+    println("${who.camelCase()} é ${howMuch.letOrEmpty { "${name.lowercase()} " }}${somethingAboutThem.lowercase()}")
+
+enum class HowMuch {
+    MUITO,
+    MEIO
+}
