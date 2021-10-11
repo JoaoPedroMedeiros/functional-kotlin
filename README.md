@@ -37,3 +37,27 @@ de parenteses para lambdas quando elas são o último parâmetro da função. Is
 É interessante também que funções recebidas por argumento podem aproveitar recursos como extension functions. É o caso
 do `also`.
 
+[Exemplos de higher order functions](src/main/kotlin/HigherOrderFunctions.kt)
+[Exemplos práticos de higher order functions](src/main/kotlin/UtilizacoesPraticasHigherOrderFunctions.kt)
+
+#### Inline Functions
+
+Existe um assunto interessante dentro de Higher Order Functions que é bem específico e avançado (é desses que a gente gosta).
+Existe um custo de memória por usar higher order function. Isso porque a JVM faz uma cópia de todo o contexto de variáveis
+que a função utilizada pela higher order function pode acessar, é o que a documentação chama de chamada virtual. Esse custo
+a mais de memória pode ser evitado através da palavra reservada `inline` antes do `fun` da higher order function. Ela vai fazer
+com que o código da higher order function junto com o código da função passada por parâmetro seja injetado no em cada parte que é
+utilizada.
+
+Veja o código de exemplo para mais detalhes.
+
+[Exemplos de inline functions](src/main/kotlin/InlineFunctions.kt)
+
+#### Scope Functions
+
+Scoped functions tem o objetivo de executar um bloco de código a respseito de um objeto.
+Elas são as funções `with`, `run`, `apply`, `let` e `also`. Todas elas podem ser chamadas como extension functions a partir
+de qualquer objetivo (`Any`). O que muda entre elas é o retorno e referencia ao objeto de contexto, que pode ser lambda
+receiver (this) ou lambda argument (it).
+
+[Exemplos de scope functions](src/main/kotlin/ScopeFunctions.kt)
