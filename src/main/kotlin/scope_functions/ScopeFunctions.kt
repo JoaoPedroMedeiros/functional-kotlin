@@ -1,3 +1,5 @@
+package scope_functions
+
 const val tableFormat = "%-12s%-20s%-18s%-30s"
 
 private data class ScopeFunction(

@@ -1,3 +1,9 @@
+class Cliente {
+
+}
+
+
+
 /**
  * Verifique o bytecode gerado na pasta build para ver a diferença das duas coisas =)
  * Dica: ctrl + shift + a e digite Show Kotlin bytecode e depois clique em decompile.

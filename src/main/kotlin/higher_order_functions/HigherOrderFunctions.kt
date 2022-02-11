@@ -1,3 +1,17 @@
+package higher_order_functions
+
+import Cliente
+
+fun Cliente.algumaCoisa(): Cliente {
+    println(this)
+    return this
+}
+
+fun Cliente.outraCoisa(): Cliente {
+    println(this)
+    return this
+}
+
 /**
  * Sobrescrevendo as higher order functions tradicionais do Kotlin como o let e o
  * also de um jeitinho especial.
@@ -8,18 +22,18 @@ fun main() {
         describeSomeone(pureText.whoWeAreTalkingAbout(), pureText.somethingAbout())
     }
 
-    "joÃo Lindão".letDelayed(3000) {
+    "joÃo Maroto".letDelayed(3000) { a ->
         describeSomeone(
-            who = it.whoWeAreTalkingAbout(),
-            somethingAboutThem = it.somethingAbout(),
+            who = a.whoWeAreTalkingAbout(),
+            somethingAboutThem = a.somethingAbout(),
             howMuch = HowMuch.MEIO
         )
     }
 
     "JOÃO Doidão".alsoDelayed(3000) {
         describeSomeone(
-            who = whoWeAreTalkingAbout(),
-            somethingAboutThem = somethingAbout(),
+            who = this.whoWeAreTalkingAbout(),
+            somethingAboutThem = this.somethingAbout(),
             howMuch = HowMuch.MUITO
         )
     }
@@ -53,7 +67,7 @@ fun <T, R> T.letDelayed(delay: Long, block: (T) -> R): R {
  */
 fun <T, R> T.alsoDelayed(delay: Long, block: T.() -> R): R {
     Thread.sleep(delay)
-    return block()
+    return this.block()
 }
 
 fun String.whoWeAreTalkingAbout() = substringBefore(" ")

@@ -1,4 +1,7 @@
-import java.math.BigDecimal
+package type_functions
+
+fun safeDivide(numerator: Int, denominator: Int) =
+    if (denominator == 0) 0.0 else numerator.toDouble() / denominator
 
 fun main() {
     // Essa variável é uma referência para a função safe divide
@@ -31,9 +34,6 @@ fun main() {
     val calcularBonificacao: (salario: Double) -> Double = { it + 200 }
     println(calcularBonificacao(2000.00))
 }
-
-fun safeDivide(numerator: Int, denominator: Int) =
-    if (denominator == 0) 0.0 else numerator.toDouble() / denominator
 
 class SafeDivisor : (Int, Int) -> Double {
 
